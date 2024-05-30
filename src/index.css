@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* .seach {
+  transition: ease-in-out 1s;
+}
+.seach:focus {
+  width: 400px;
+  transition: ease-in-out 1s;
+} */
+.header {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
