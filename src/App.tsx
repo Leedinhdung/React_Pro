@@ -2,7 +2,8 @@ import "./App.css";
 import Header from "./components/Header";
 
 import Sidebar from "./components/Sidebar";
-import ListProduct from "./pages/Admin/Products/ListProduct";
+import AddProduct from "./pages/Admin/Products/AddProduct";
+// import ListProduct from "./pages/Admin/Products/ListProduct";
 // import Dashboard from "./pages/Admin/DashBoard";
 // import Dashboard from "./pages/DashBoard";
 
@@ -16,7 +17,7 @@ function App() {
         <Header />
         <div>
           {/* <Dashboard /> */}
-          <ListProduct />
+          <AddProduct />
         </div>
       </div>
     </div>
