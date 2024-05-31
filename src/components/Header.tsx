@@ -1,10 +1,10 @@
 const Header = () => {
   return (
-    <div className="flex items-center justify-between h-[70px] shadow-md px-[25px] ">
+    <div className="header flex items-center justify-between h-[70px]   shadow-xl px-[25px]  fixed top-0 right-0 left-[20%] bg-white">
       <div className="flex items-center relative">
         <input
           type="text"
-          className="bg-[#f8f9fc] h-[40px] outline-none pe-[15px] ps-10 w-[300px] rounded-full leading-[20px]"
+          className="bg-[#f8f9fc] h-[40px] outline-none pe-[15px] ps-10 w-[300px] rounded-full leading-[20px] "
           placeholder="Tìm kiếm..."
         />
         <div className="h-[40px] px-[14px] flex items-center justify-center cursor-pointer absolute  ">

@@ -1,11 +1,41 @@
-import React from "react";
-
 const AddProduct = () => {
   return (
     <div>
-      <section className="bg-white ">
-        <div className="py-8  mx-auto max-w-2xl lg:py-16">
-          <h2 className="mb-4 text-xl font-bold  ">Thêm sản phẩm</h2>
+      <section className="bg-white mt-[80px] px-[25px]">
+        <div className="flex items-center justify-between">
+          <h2 className="mb-4 text-xl font-medium  ">Thêm sản phẩm</h2>
+          <nav className="flex" aria-label="Breadcrumb">
+            <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+              <li className="inline-flex items-center">
+                <a href="#" className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 ">
+                  <svg className="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
+                  </svg>
+                  Trang chủ
+                </a>
+              </li>
+              <li>
+                <div className="flex items-center">
+                  <svg className="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
+                  </svg>
+                  <a href="#" className="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 ">Quản lý sản phẩm</a>
+                </div>
+              </li>
+              <li aria-current="page">
+                <div className="flex items-center">
+                  <svg className="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
+                  </svg>
+                  <span className="ms-1 text-sm font-medium text-gray-500 md:ms-2 ">Thêm sản phẩm</span>
+                </div>
+              </li>
+            </ol>
+          </nav>
+
+        </div>
+
+        <div className="  mx-auto max-w-max lg:py-16  p-5  ">
           <form action="#">
             <div className="grid gap-4 grid-cols-3 sm:gap-8">
               <div className="sm:col-span-2">
@@ -13,7 +43,7 @@ const AddProduct = () => {
                   htmlFor="name"
                   className="block mb-2 text-sm font-medium  "
                 >
-                  Product Name
+                  Tên sản phẩm
                 </label>
                 <input
                   type="text"
@@ -29,7 +59,7 @@ const AddProduct = () => {
                   htmlFor="category"
                   className="block mb-2 text-sm font-medium  "
                 >
-                  Category
+                  Danh mục
                 </label>
                 <select
                   id="category"
@@ -47,7 +77,7 @@ const AddProduct = () => {
                   htmlFor="brand"
                   className="block mb-2 text-sm font-medium  "
                 >
-                  Brand
+                  Hãng
                 </label>
                 <input
                   type="text"
@@ -60,15 +90,15 @@ const AddProduct = () => {
               </div>
               <div className="w-full">
                 <label
-                  htmlFor="price"
+                  htmlFor="size"
                   className="block mb-2 text-sm font-medium  "
                 >
                   Size
                 </label>
                 <input
                   type="text"
-                  name="price"
-                  id="price"
+                  name="size"
+                  id="size"
                   className="bg-gray-50 border border-gray-300  text-sm rounded-sm focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                   required
                 />
@@ -78,12 +108,13 @@ const AddProduct = () => {
                   htmlFor="price"
                   className="block mb-2 text-sm font-medium  "
                 >
-                  Price
+                  Giá
                 </label>
                 <input
                   type="number"
                   name="price"
                   id="price"
+                  min={1}
                   className="bg-gray-50 border border-gray-300  text-sm rounded-sm focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                   placeholder="$2999"
                   required
@@ -101,7 +132,7 @@ const AddProduct = () => {
                   className="block mb-2 text-sm font-medium "
                   htmlFor="user_avatar"
                 >
-                  Upload file
+                  Ảnh
                 </label>
                 <input
                   className="block w-full text-sm  border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
@@ -113,8 +144,7 @@ const AddProduct = () => {
                   className="mt-1 text-sm text-gray-500 "
                   id="user_avatar_help"
                 >
-                  A profile picture is useful to confirm your are logged into
-                  your account
+                 
                 </div>
               </div>
 
@@ -123,7 +153,7 @@ const AddProduct = () => {
                   htmlFor="description"
                   className="block mb-2 text-sm font-medium  "
                 >
-                  Description
+                  Mô tả sản phẩm
                 </label>
                 <textarea
                   id="description"
@@ -135,9 +165,10 @@ const AddProduct = () => {
             </div>
             <button
               type="submit"
-              className="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-sm focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800"
+              className="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-sm focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800 bg-black rounded-sm"
             >
-              Add product
+              <i className="fa-solid fa-plus me-3"></i>
+             Thêm sản phẩm
             </button>
           </form>
         </div>
