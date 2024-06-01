@@ -13,7 +13,9 @@ export default {
       center: true,
       padding: "1rem",
     },
-    extend: {},
+    extend: {
+      display: ['group-hover'],
+    },
   },
   plugins: [],
 };

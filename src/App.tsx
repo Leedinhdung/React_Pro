@@ -1,29 +1,20 @@
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import Header from "./components/Header";
 
-import Sidebar from "./components/Sidebar";
-// import AddProduct from "./pages/Admin/Products/AddProduct";
-import HomePage from "./pages/User/HomePage";
-// import ListProduct from "./pages/Admin/Products/ListProduct";
-// import Dashboard from "./pages/Admin/DashBoard";
-// import Dashboard from "./pages/DashBoard";
+import Dashboard from "./components/DashBoard";
+import Layout from "./components/shared/Layout";
+
+
 
 function App() {
   return (
-    // <div className="flex">
-    //   <div className="basis-[18%] h-[100vh] ">
-    //     <Sidebar />
-    //   </div>
-    //   <div className="basis-[82%] h-[100vh] overflow-scroll ">
-    //     <Header />
-    //     <div>
-    //       {/* <Dashboard /> */}
-    //       {/* <AddProduct /> */}
-
-    //     </div>
-    //   </div>
-    // </div>
-    <HomePage />
+    <Routes>
+      <Route path="/" element={<Layout />} >
+        <Route index element={<Dashboard />} />
+        <Route path="/" element={<h1>Home</h1>} />
+      </Route>
+      <Route path="login" element={<h1>Login Page</h1>} />
+    </Routes>
   );
 }
 

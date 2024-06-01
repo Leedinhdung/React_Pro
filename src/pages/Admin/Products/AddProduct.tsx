@@ -144,7 +144,7 @@ const AddProduct = () => {
                   className="mt-1 text-sm text-gray-500 "
                   id="user_avatar_help"
                 >
-                 
+
                 </div>
               </div>
 
@@ -165,10 +165,10 @@ const AddProduct = () => {
             </div>
             <button
               type="submit"
-              className="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-sm focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800 bg-black rounded-sm"
+              className="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-sm focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800 bg-black"
             >
               <i className="fa-solid fa-plus me-3"></i>
-             Thêm sản phẩm
+              Thêm sản phẩm
             </button>
           </form>
         </div>
