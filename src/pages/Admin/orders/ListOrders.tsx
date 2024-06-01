@@ -1,4 +1,9 @@
-const ListProduct = () => {
+/**
+ * Renders a table component that displays a list of orders.
+ * The table includes features such as search, sorting, and pagination.
+ * It also provides actions for creating new orders and managing existing ones.
+ */
+const ListOrders = () => {
   return (
     <div className="relative bg-white overflow-x-auto shadow-md sm:rounded-lg  p-4">
       <div className="pb-4 ">
@@ -97,7 +102,10 @@ const ListProduct = () => {
             <td className="px-6 py-4">Laptop</td>
             <td className="px-6 py-4">$2999</td>
             <td className="px-6 py-4">
-              <a href="#" className="font-medium text-blue-600 hover:underline ">
+              <a
+                href="#"
+                className="font-medium text-blue-600 hover:underline "
+              >
                 <i className="fa-solid fa-pencil text-xl"></i>
               </a>
               <span className="mx-3 text-black font-medium text-xl">||</span>
@@ -111,4 +119,4 @@ const ListProduct = () => {
     </div>
   );
 };
-export default ListProduct;
+export default ListOrders;

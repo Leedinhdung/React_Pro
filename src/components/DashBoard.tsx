@@ -1,6 +1,9 @@
 import React from 'react'
 import { IoBagHandle } from 'react-icons/io5'
-import Chart from './Chart'
+import TransactionChart from './TransactionChart'
+import BuyerChart from './BuyerChart'
+import RecentOrders from './RecentOrders'
+import PopularProducts from './PopularProducts'
 
 export default function DashBoard() {
   return (
@@ -60,7 +63,14 @@ export default function DashBoard() {
         </BoxWrapper>
 
       </div>
-      <Chart />
+      <div className='flex flex-row gap-4 w-full'>
+        <TransactionChart />
+        <BuyerChart />
+      </div>
+      <div className='flex mt-4 flex-row gap-4 w-full'>
+        <RecentOrders />
+        <PopularProducts />
+      </div>
     </div>
   )
 }
