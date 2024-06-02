@@ -5,8 +5,11 @@ const LoginPage = () => {
         <div>
           <h2 className="font-bold uppercase text-center my-5">Đăng nhập</h2>
           <div className="text-center mb-5">
+            <div className="flex justify-center">
+              <img src="../../public/vite.svg" alt="" />
+            </div>
             <p>Chào mừng bạn đến với hệ thống</p>
-            <p className="font-bold text-xl text-[#1E40AF]">VUELAR</p>
+            <p className="font-bold text-xl text-[#1E40AF]">RELAR</p>
           </div>
         </div>
         <div className="mb-2">
@@ -60,7 +63,7 @@ const LoginPage = () => {
         <div className="text-center mt-6">
           <span>
             Nếu bạn chưa có tài khoản!
-            <a href="" className="no-underline hover:underline">
+            <a href="/register" className="no-underline hover:underline">
               Đăng ký
             </a>
           </span>

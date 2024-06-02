@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const ListProduct = () => {
   return (
     <div className="relative bg-white overflow-x-auto shadow-md sm:rounded-lg  p-4">
@@ -32,12 +34,12 @@ const ListProduct = () => {
             />
           </div>
           <div>
-            <a href="/product/add">
+            <Link to={"/product/add"}>
               <button className="bg-blue-600 rounded-full px-2.5 py-1.5 text-white">
                 <i className="fa-solid fa-plus me-2 font-medium"></i>
                 Thêm mới
               </button>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -97,13 +99,13 @@ const ListProduct = () => {
             <td className="px-6 py-4">Laptop</td>
             <td className="px-6 py-4">$2999</td>
             <td className="px-6 py-4">
-              <a href="#" className="font-medium text-blue-600 hover:underline ">
+              {/* <Link to={`product/edit/${id}`} className="font-medium text-blue-600 hover:underline ">
                 <i className="fa-solid fa-pencil text-xl"></i>
-              </a>
+              </Link> */}
               <span className="mx-3 text-black font-medium text-xl">||</span>
-              <a href="#" className="font-medium text-blue-600 hover:underline">
+              <Link to={"#"} className="font-medium text-blue-600 hover:underline">
                 <i className="fa-solid fa-trash text-xl"></i>
-              </a>
+              </Link>
             </td>
           </tr>
         </tbody>

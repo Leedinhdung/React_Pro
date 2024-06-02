@@ -1,0 +1,13 @@
+{
+  "products": [
+    {
+      "name": "lê đình dũng 1",
+      "category": "PC",
+      "brand": "Dior",
+      "size": "XL",
+      "price": "290000",
+      "description": "",
+      "id": 1
+    }
+  ]
+}
