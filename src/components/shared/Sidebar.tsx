@@ -1,8 +1,18 @@
-import { Link, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { IoLogoReddit } from "react-icons/io";
-import { DASHBOARD_SIDEBAR_BOTTOM_LINKS, DASHBOARD_SIDEBAR_LINKS } from "../lib/consts/navigation";
+
 import classNames from "classnames";
-import { HiOutlineLogout } from "react-icons/hi";
+import {
+  HiOutlineLogout,
+  HiOutlineViewGrid,
+  HiOutlineCube,
+  HiOutlineShoppingCart,
+  HiOutlineUsers,
+  HiOutlineDocumentText,
+  HiOutlineAnnotation,
+  HiOutlineQuestionMarkCircle,
+  HiOutlineCog
+} from "react-icons/hi";
 const linkClasses = "flex items-center gap-2 font-light px-3 py-2 hover:bg-neutral-800 hover:no-underline active:bg-neutral-600 rounded-sm text-base"
 const Sidebar = () => {
   return (
@@ -11,15 +21,44 @@ const Sidebar = () => {
         <IoLogoReddit fontSize={"3rem"} />
         <span className="text-neutral-100 text-lg">ReLar</span>
       </div>
+
       <div className="flex-1 py-8 flex flex-col gap-0.5">
-        {DASHBOARD_SIDEBAR_LINKS.map((item) => (
-          <SidebarLink key={item.key} item={item} />
-        ))}
+        <NavLink to={'/admin'} className={({ isActive, isPending }) => isPending ? `${linkClasses}` : isActive ? `bg-neutral-400 ${linkClasses}` : `${linkClasses}`} end>
+          <HiOutlineViewGrid fontSize={24} />
+          <span>DashBoard</span>
+        </NavLink>
+        <NavLink to={'/admin/product'} className={({ isActive, isPending }) => isPending ? `${linkClasses}` : isActive ? `bg-neutral-400 ${linkClasses}` : `${linkClasses}`} end>
+          <HiOutlineCube fontSize={24} />
+          <span>Products</span>
+        </NavLink>
+        <NavLink to={'/admin/order'} className={({ isActive, isPending }) => isPending ? `${linkClasses}` : isActive ? `bg-neutral-400 ${linkClasses}` : `${linkClasses}`} end>
+          <HiOutlineShoppingCart fontSize={24} />
+          <span>Orders</span>
+        </NavLink>
+        <NavLink to={'/admin/customer'} className={({ isActive, isPending }) => isPending ? `${linkClasses}` : isActive ? `bg-neutral-400 ${linkClasses}` : `${linkClasses}`} end>
+          <HiOutlineUsers fontSize={24} />
+          <span>Customers</span>
+        </NavLink>
+        <NavLink to={'/admin/transactions'} className={({ isActive, isPending }) => isPending ? `${linkClasses}` : isActive ? `bg-neutral-400 ${linkClasses}` : `${linkClasses}`} end>
+          <HiOutlineDocumentText fontSize={24} />
+          <span>Transactions</span>
+        </NavLink>
+        <NavLink to={'/admin/messages'} className={({ isActive, isPending }) => isPending ? `${linkClasses}` : isActive ? `bg-neutral-400 ${linkClasses}` : `${linkClasses}`} end>
+          <HiOutlineAnnotation fontSize={24} fontWeight={200} />
+          <span>Messages</span>
+        </NavLink>
+
+
       </div>
       <div className="flex flex-col gap-0.5 pt-2 border-t-2 border-neutral-700">
-        {DASHBOARD_SIDEBAR_BOTTOM_LINKS.map((item) => (
-          <SidebarLink key={item.key} item={item} />
-        ))}
+        <NavLink to={'/admin/settings'} className={({ isActive, isPending }) => isPending ? `${linkClasses}` : isActive ? `bg-neutral-400 ${linkClasses}` : `${linkClasses}`} end>
+          <HiOutlineCog fontSize={24} fontWeight={200} />
+          <span>DashBoard</span>
+        </NavLink>
+        <NavLink to={'/admin/support'} className={({ isActive, isPending }) => isPending ? `${linkClasses}` : isActive ? `bg-neutral-400 ${linkClasses}` : `${linkClasses}`} end>
+          <HiOutlineQuestionMarkCircle fontSize={24} fontWeight={200} />
+          <span>Help & Support</span>
+        </NavLink>
         <div className={classNames('text-red-500 cursor-pointer', linkClasses)}>
           <span className="text-xl"><HiOutlineLogout /></span>
           Logout
@@ -29,12 +68,3 @@ const Sidebar = () => {
   );
 };
 export default Sidebar;
-function SidebarLink({ item }) {
-  const { pathname } = useLocation()
-  return (
-    <Link to={item.path} className={classNames(pathname === item.path ? 'bg-neutral-700 text-white' : 'text-neutral-400', linkClasses)}>
-      <span className="text-xl">{item.icon}</span>
-      {item.label}
-    </Link>
-  );
-}
