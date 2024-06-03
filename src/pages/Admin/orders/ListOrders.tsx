@@ -1,8 +1,4 @@
-/**
- * Renders a table component that displays a list of orders.
- * The table includes features such as search, sorting, and pagination.
- * It also provides actions for creating new orders and managing existing ones.
- */
+
 const ListOrders = () => {
   return (
     <div className="relative bg-white overflow-x-auto shadow-md sm:rounded-lg  p-4">

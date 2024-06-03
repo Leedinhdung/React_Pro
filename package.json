@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^2.0.4",
+    "@hookform/resolvers": "^3.4.2",
     "apexcharts": "^3.49.1",
     "classnames": "^2.5.1",
     "css.gg": "^2.1.1",
@@ -22,7 +23,8 @@
     "react-hook-form": "^7.51.5",
     "react-icons": "^5.2.1",
     "react-router-dom": "^6.23.1",
-    "recharts": "^2.12.7"
+    "recharts": "^2.12.7",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",

@@ -8,6 +8,15 @@
       "price": "290000",
       "description": "",
       "id": 1
+    },
+    {
+      "name": "lê đình dũng",
+      "category": "TV",
+      "brand": "Dior",
+      "size": "XL",
+      "price": 10000,
+      "description": "",
+      "id": 2
     }
   ]
 }

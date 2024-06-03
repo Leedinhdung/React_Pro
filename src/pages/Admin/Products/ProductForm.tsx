@@ -1,9 +1,18 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useParams } from "react-router-dom";
-import IProductForm from "../../../interfaces/IProduct";
 
 
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+const productSchema = z.object({
+  name: z.string().min(5, { message: 'Tên sản phẩm phải từ 5 kí tự trở lên !' }).max(100, { message: 'Tên sản phẩm không được quá 100 kí tự !' }),
+  category: z.string(),
+  brand: z.string().min(1, { message: 'Vui lòng nhập thông tin' }),
+  size: z.string().min(1, { message: 'Vui lòng nhập thông tin' }),
+  price: z.number().min(1, { message: "Vui lòng nhập giá lớn hơn 0" }),
+  description: z.string().optional(),
+})
 
 const ProductForm = ({ addPro, editPro }: any) => {
   const { id } = useParams();
@@ -14,7 +23,9 @@ const ProductForm = ({ addPro, editPro }: any) => {
     reset,
     handleSubmit,
     formState: { errors },
-  } = useForm<IProductForm>();
+  } = useForm({
+    resolver: zodResolver(productSchema),
+  });
   if (id) {
     useEffect(() => {
       fetch('http://localhost:3000/products/' + id).then(res => res.json()).then(data => {
@@ -80,13 +91,13 @@ const ProductForm = ({ addPro, editPro }: any) => {
                   type="text"
 
                   id="name"
-                  {...register("name", { required: "Vui lòng nhập" })}
+                  {...register("name", { required: "Vui lòng nhập thông tin" })}
 
                   className="bg-gray-50 border border-gray-300  text-sm rounded-sm focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
                   placeholder="Type product name"
 
                 />
-                <span>{errors?.name?.message}</span>
+                <small className="text-red-600 text-sm mt-2">{errors.name?.message?.toString()}</small>
               </div>
               <div>
                 <label
@@ -106,7 +117,9 @@ const ProductForm = ({ addPro, editPro }: any) => {
                   <option value="GA">Gaming/Console</option>
                   <option value="PH">Phones</option>
                 </select>
+                <small className="text-red-600 text-sm mt-2">{errors.category?.message?.toString()}</small>
               </div>
+
               <div className="w-full">
                 <label
                   htmlFor="brand"
@@ -123,6 +136,7 @@ const ProductForm = ({ addPro, editPro }: any) => {
                   placeholder="Product brand"
 
                 />
+                <small className="text-red-600 text-sm mt-2">{errors.brand?.message?.toString()}</small>
               </div>
               <div className="w-full">
                 <label
@@ -137,8 +151,9 @@ const ProductForm = ({ addPro, editPro }: any) => {
                   id="size"
                   {...register("size", { required: true })}
                   className="bg-gray-50 border border-gray-300  text-sm rounded-sm focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-
+                  placeholder="M"
                 />
+                <small className="text-red-600 text-sm mt-2">{errors.size?.message?.toString()}</small>
               </div>
               <div className="w-full">
                 <label
@@ -150,12 +165,13 @@ const ProductForm = ({ addPro, editPro }: any) => {
                 <input
                   type="number"
 
-                  id="price" {...register("price", { required: true })}
+                  id="price" {...register("price", { required: true, valueAsNumber: true })}
                   min={1}
                   className="bg-gray-50 border border-gray-300  text-sm rounded-sm focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                   placeholder="$2999"
 
                 />
+                <small className="text-red-600 text-sm mt-2">{errors.price?.message?.toString()}</small>
               </div>
               {/* <div className="w-52 col-span-2 border-2 border-gray-300 rounded-md">
                   <img
