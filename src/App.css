@@ -5,6 +5,7 @@
 .title {
   @apply text-3xl font-semibold capitalize text-center my-8;
 }
+
 .active {
   height: 12vh;
   position: fixed;
@@ -38,12 +39,4 @@
 .homeSlide ul li button {
   background: transparent !important;
   color: transparent !important;
-}
-.homeSlide ul li button::before {
-  font-size: 15px !important;
-  color: #0f3460;
-  position: absolute;
-  top: 2px;
-  left: 0;
-  margin: auto;
 }

@@ -46,9 +46,9 @@ const Header = () => {
 
 
     return (
-        <main className='shadow-xl'>
-            <section className='bg-[#0f3460] py-[10px] text-white'>
-                <div className="container flex justify-between items-center">
+        <main className='shadow '>
+            <section className='bg-[#0f3460] py-[10px] text-white '>
+                <div className=" flex justify-between items-center container-full">
 
                     <div className='flex items-center'>
                         <HiPhone className='me-[10px]' />
@@ -64,10 +64,10 @@ const Header = () => {
 
                 </div>
             </section>
-            <section className='header py-[20px]'>
-                <div className='container flex justify-between items-center'>
+            <section className='header py-[10px]'>
+                <div className=' flex justify-between items-center container-full'>
                     <div>
-                        <img src={logo} className="w-20" alt="" />
+                        <img src={logo} className="w-24" alt="" />
                     </div>
                     <div className='w-[50%] relative hidden md:block'>
                         <FaSearch
@@ -98,8 +98,8 @@ const Header = () => {
             </section>
             <section className='md:pt-3 py-2'>
                 <header>
-                    <div className='container flex justify-between'>
-                        <div className='flex items-center gap-4 shadow-2xl px-5 rounded-lg'>
+                    <div className='container-full flex justify-between'>
+                        <div className='flex items-center gap-4 shadow px-5 rounded-lg'>
                             <FaBorderAll fontSize={30} />
                             <h4 className='flex items-center text-xl font-medium'>Categories <HiChevronDown /></h4>
                         </div>

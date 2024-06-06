@@ -8,7 +8,7 @@ import Header from '../../components/home/Header'
 
 const HomePage = () => {
     return (
-        <div className='container'>
+        <div>
             <Header />
 
 
