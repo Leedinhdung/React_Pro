@@ -23,7 +23,7 @@ const Sidebar = () => {
       </div>
 
       <div className="flex-1 py-8 flex flex-col gap-0.5">
-        <NavLink to={'/admin'} className={({ isActive, isPending }) => isPending ? `${linkClasses}` : isActive ? `bg-neutral-400 ${linkClasses}` : `${linkClasses}`} end>
+        <NavLink to={'/admin/dashboard'} className={({ isActive, isPending }) => isPending ? `${linkClasses}` : isActive ? `bg-neutral-400 ${linkClasses}` : `${linkClasses}`} end>
           <HiOutlineViewGrid fontSize={24} />
           <span>DashBoard</span>
         </NavLink>

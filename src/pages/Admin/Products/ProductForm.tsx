@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -15,8 +15,9 @@ const productSchema = z.object({
 })
 
 const ProductForm = ({ addPro, editPro }: any) => {
+  const navigate = useNavigate();
   const { id } = useParams();
-  console.log(id);
+
 
   const {
     register,
@@ -36,8 +37,10 @@ const ProductForm = ({ addPro, editPro }: any) => {
   const onSubmit = (data: any) => {
     if (id)
       editPro(data, id)
+
     else
       addPro(data)
+    navigate('/admin/product')
   }
   return (
     <div>
@@ -47,7 +50,7 @@ const ProductForm = ({ addPro, editPro }: any) => {
           <nav className="flex" aria-label="Breadcrumb">
             <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
               <li className="inline-flex items-center">
-                <Link to={'/'}
+                <Link to={'/admin'}
                   className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 "
                 >
 
@@ -58,7 +61,7 @@ const ProductForm = ({ addPro, editPro }: any) => {
                 <div className="flex items-center">
                   <i className="fa-solid fa-chevron-right w-3 h-3 me-2.5"></i>
                   <Link
-                    to={"/product"}
+                    to={"/admin/product"}
                     className="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 "
                   >
                     Quản lý sản phẩm
@@ -91,7 +94,7 @@ const ProductForm = ({ addPro, editPro }: any) => {
                   type="text"
 
                   id="name"
-                  {...register("name", { required: "Vui lòng nhập thông tin" })}
+                  {...register("name", { required: true })}
 
                   className="bg-gray-50 border border-gray-300  text-sm rounded-sm focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
                   placeholder="Type product name"
@@ -171,7 +174,7 @@ const ProductForm = ({ addPro, editPro }: any) => {
                   placeholder="$2999"
 
                 />
-                <small className="text-red-600 text-sm mt-2">{errors.price?.message?.toString()}</small>
+                <small className="text-red-600 text-sm mt-2">{errors.price?.message}</small>
               </div>
               {/* <div className="w-52 col-span-2 border-2 border-gray-300 rounded-md">
                   <img

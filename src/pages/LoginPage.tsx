@@ -1,7 +1,56 @@
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
+import * as z from 'zod';
+
+
 const LoginPage = () => {
+  const navigate = useNavigate()
+  const passwordValidation = new RegExp(
+    /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
+  );
+  const authSchema = z.object({
+    email: z
+      .string()
+      .min(1, { message: "Vui lòng nhập email" })
+      .email("Vui lòng nhập đúng định dạng."),
+    password: z.string().min(6, { message: 'Mật khẩu cần ít nhất 6 kí tự' })
+      .regex(passwordValidation, {
+        message: 'Vui lòng nhập mật khẩu có kí tự đặc biệt và chữ in hoa',
+      }),
+  })
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(authSchema),
+
+  });
+  const onSubmit = (data: any) => {
+
+    (async () => {
+      try {
+        const res = await fetch("http://localhost:3000/login", {
+          method: 'POST',
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        })
+        if (res.status == 200) {
+          alert("Bạn đã đăng nhập thành công !")
+          navigate('/')
+        } else {
+          alert('Tài khoản không tồn tại !')
+        }
+      } catch (error) {
+        console.log(errors);
+      }
+    })()
+  }
+
   return (
     <div className="login mt-[100px]">
-      <form className="bg-white max-w-[420px] mx-auto rounded-md shadow-md p-10">
+      <form onSubmit={handleSubmit(onSubmit)} className="bg-white max-w-[420px] mx-auto rounded-md shadow-md p-10">
         <div>
           <h2 className="font-bold uppercase text-center my-5">Đăng nhập</h2>
           <div className="text-center mb-5">
@@ -21,8 +70,9 @@ const LoginPage = () => {
           </label>
           <input
             type="text"
-            v-model="email"
+
             className="bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-md block w-full p-2 px-2 outline-none"
+            {...register("email", { required: true })}
           />
         </div>
         <div>
@@ -34,8 +84,9 @@ const LoginPage = () => {
           </label>
           <input
             type="password"
-            v-model="password"
+
             className="bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-md block w-full p-2 px-2 outline-none"
+            {...register("password", { required: true })}
           />
         </div>
         <div className="flex justify-between mt-3">
@@ -63,9 +114,9 @@ const LoginPage = () => {
         <div className="text-center mt-6">
           <span>
             Nếu bạn chưa có tài khoản!
-            <a href="/register" className="no-underline hover:underline">
+            <Link to={"/register"} className="no-underline hover:underline">
               Đăng ký
-            </a>
+            </Link>
           </span>
         </div>
       </form>

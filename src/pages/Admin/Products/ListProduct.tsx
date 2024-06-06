@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
 import IProductForm from "../../../interfaces/IProduct";
+import { useState } from "react";
 interface IProps {
-  data: IProductForm[]
+  data: IProductForm[],
+  onDel: any
 }
+
 const ListProduct = (props: IProps) => {
-  console.log(props.data);
+  const [search, setSearch] = useState("")
 
   return (
     <div className="relative bg-white overflow-x-auto shadow-md sm:rounded-lg  p-4">
@@ -18,6 +21,7 @@ const ListProduct = (props: IProps) => {
               <i className="fa-solid fa-magnifying-glass"></i>
             </div>
             <input
+              onChange={(e) => setSearch(e.target.value)}
               type="text"
               id="table-search"
               className="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 "
@@ -50,24 +54,32 @@ const ListProduct = (props: IProps) => {
               </div>
             </th>
             <th scope="col" className="px-6 py-3">
-              Product name
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Color
+              Name
             </th>
             <th scope="col" className="px-6 py-3">
               Category
             </th>
             <th scope="col" className="px-6 py-3">
+              Brand
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Size
+            </th>
+            <th scope="col" className="px-6 py-3">
               Price
             </th>
             <th scope="col" className="px-6 py-3">
+              Description
+            </th>
+            <th scope="col" className="px-6 py-3 text-center">
               Action
             </th>
           </tr>
         </thead>
         <tbody>
-          {props.data.map((items) => {
+          {props.data.filter((item) => {
+            return search.toLowerCase() === '' ? item : item.name.toLowerCase().includes(search)
+          }).map((items) => {
             return (
               <tr key={items.id} className="bg-white border-b  hover:bg-gray-50 ">
                 <td className="w-4 p-4">
@@ -94,14 +106,17 @@ const ListProduct = (props: IProps) => {
                 <td className="px-6 py-4">{items.size}</td>
                 <td className="px-6 py-4">${items.price}</td>
                 <td className="px-6 py-4">{items.description}</td>
-                <td className="px-6 py-4">
-                  <Link to={`admin/product/edit/${items.id}`} className="font-medium text-blue-600 hover:underline ">
+                <td className="px-6 py-4 text-center">
+                  <Link to={`/admin/product/edit/${items.id}`} className="font-medium text-blue-600 hover:underline ">
                     <i className="fa-solid fa-pencil text-xl"></i>
                   </Link>
                   <span className="mx-3 text-black font-medium text-xl">||</span>
-                  <Link to={"#"} className="font-medium text-blue-600 hover:underline">
+                  <button onClick={() => {
+                    if (confirm('Are you sure?'))
+                      props.onDel(items.id)
+                  }} className="font-medium text-blue-600 hover:underline">
                     <i className="fa-solid fa-trash text-xl"></i>
-                  </Link>
+                  </button>
                 </td>
               </tr>
             )

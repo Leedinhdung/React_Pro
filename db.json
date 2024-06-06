@@ -1,21 +1,44 @@
 {
   "products": [
     {
-      "name": "lê đình dũng 1",
-      "category": "PC",
+      "name": "Áo sơ mi",
+      "category": "GA",
       "brand": "Dior",
       "size": "XL",
-      "price": "290000",
+      "price": 1000,
       "description": "",
-      "id": 1
+      "id": 3
     },
     {
-      "name": "lê đình dũng",
-      "category": "TV",
+      "name": "iPhone 14",
+      "category": "PH",
       "brand": "Dior",
       "size": "XL",
       "price": 10000,
       "description": "",
+      "id": 4
+    },
+    {
+      "name": "product 45",
+      "category": "TV",
+      "brand": "Áo Polo",
+      "size": "XL",
+      "price": 10000,
+      "description": "",
+      "id": 5
+    }
+  ],
+  "users": [
+    {
+      "email": "admin@gmail.com",
+      "password": "$2a$10$dGq2I.ZILMTjJaAk5uSM4Oap/NzPBJTQgkI6ng3iiae.OQsusPsu6",
+      "confirm": "Dinhdung16@",
+      "id": 1
+    },
+    {
+      "email": "dinhdung160304@gmail.com",
+      "password": "$2a$10$5TL911Z0f7sUs..09B1Bj.edygAst5sV6HOBE2bj1ufgiFSBC2Mzi",
+      "confirm": "Dinhdung16@",
       "id": 2
     }
   ]
