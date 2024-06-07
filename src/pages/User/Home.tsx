@@ -154,11 +154,11 @@ const Home = () => {
     return (
 
         // Banner
-        <div>
+        <div className="">
             <Banner />
             <div className=' bg-[#f6f9fc] py-10'>
-                <div className="container-full">
-                    <div className="flex items-center max-w-[90%] ">
+                <div className="container">
+                    <div className="flex items-center ">
                         <FaBolt className="me-3 text-[#e94560] " fontSize={24} />
                         <h1 className=' font-[600] text-2xl'>Flash Deals</h1>
                     </div>
@@ -191,17 +191,12 @@ const Home = () => {
                                         </div>
                                     </div>
                                 </div>
-
-
                             )
                         })
                         }
-
-
                     </Slider>
-
                 </div>
-                <section className='container-full'>
+                <section className='container'>
                     <div className=' mt-10'>
                         <div className='flex items-center justify-between'>
                             <div className='flex items-center gap-3'>
@@ -214,13 +209,13 @@ const Home = () => {
                             </div>
                         </div>
 
-                        <div className=" grid grid-cols-6 gap-8 bg-white">
+                        <div className=" grid grid-cols-6 gap-8 bg-white rounded-xl shadow p-5">
                             {Ndata.map((value, index) => {
                                 return (
-                                    <div key={index} className="">
+                                    <div key={index} className=" rounded-lg p-5">
                                         <div className="w-full h-full">
-                                            <img className="w-auto h-auto" src={value.cover} alt="" />
-                                            <div>
+                                            <img className="w-44" src={value.cover} alt="" />
+                                            <div className="flex items-center justify-between">
                                                 <h4 className="font-medium">{value.name}</h4>
                                                 <span className="text-[#e94560] text-sm font-medium">${value.price}</span>
                                             </div>

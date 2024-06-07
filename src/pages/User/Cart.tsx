@@ -5,7 +5,7 @@ import { FaPlus } from "react-icons/fa6"
 const Cart = () => {
     return (
         <div className="bg-[#f6f9fc] h-auto py-12">
-            <div className="container-full flex">
+            <div className="container flex justify-center">
 
                 <div className="w-[70%]">
                     <div className='flex justify-between items-center rounded-xl shadow bg-white mt-8 w-full p-6' >

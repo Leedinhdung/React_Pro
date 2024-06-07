@@ -74,8 +74,8 @@ const Banner = () => {
        
     };
     return (
-        <section className='flex container-full'>
-            <div className=' w-[22%] h-[510px] py-4 rounded-md shadow mt-2 hidden md:block'>
+        <section className='container flex'>
+            <div className=' w-[20%] h-[510px] py-4 rounded-md shadow mt-2 hidden md:block'>
                 {
                     data.map(({ cateImg, cateName, path }) => (
                         <Link to={path} className='flex items-center gap-3 mt-3 mx-5 hover:bg-[#ffe1ef] cursor-pointer p-3 transition-all rounded'>
@@ -85,7 +85,7 @@ const Banner = () => {
                     ))
                 }
             </div>
-            <div className=' w-[71%] homeSlide z-10 flex-wrap flex-col'>
+            <div className=' w-[70%] homeSlide z-10 flex-wrap flex-col'>
                 <Slider {...settings}>
                     {dataSlide.map((value, index) => {
                         return (
