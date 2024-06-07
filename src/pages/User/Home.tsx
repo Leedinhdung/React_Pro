@@ -115,7 +115,40 @@ const Home = () => {
             price: 100,
         },
 
+    ];
+    const Ndata = [
+        {
+            cover: "./images/arrivals/arrivals1.png",
+            name: "Sunglass",
+            price: "150",
+        },
+        {
+            cover: "./images/arrivals/arrivals2.png",
+            name: "Makeup",
+            price: "250",
+        },
+        {
+            cover: "./images/arrivals/arrivals3.png",
+            name: "Smart Watch",
+            price: "50",
+        },
+        {
+            cover: "./images/arrivals/arrivals4.png",
+            name: "Lipstick",
+            price: "15",
+        },
+        {
+            cover: "./images/arrivals/arrivals5.png",
+            name: "Green Plant",
+            price: "10",
+        },
+        {
+            cover: "./images/arrivals/arrivals6.png",
+            name: "Bonsai tree",
+            price: "400",
+        },
     ]
+
 
 
     return (
@@ -168,7 +201,38 @@ const Home = () => {
                     </Slider>
 
                 </div>
+                <section className='container-full'>
+                    <div className=' mt-10'>
+                        <div className='flex items-center justify-between'>
+                            <div className='flex items-center gap-3'>
+                                <img className="h-10 w-10" src='https://img.icons8.com/glyph-neue/64/26e07f/new.png' />
+                                <h2 className="font-semibold text-2xl">New Arrivals </h2>
+                            </div>
+                            <div className='text-gray-500 flex items-center gap-2 '>
+                                <span>View all</span>
+                                <i className='fa-solid fa-caret-right'></i>
+                            </div>
+                        </div>
 
+                        <div className=" grid grid-cols-6 gap-8 bg-white">
+                            {Ndata.map((value, index) => {
+                                return (
+                                    <div key={index} className="">
+                                        <div className="w-full h-full">
+                                            <img className="w-auto h-auto" src={value.cover} alt="" />
+                                            <div>
+                                                <h4 className="font-medium">{value.name}</h4>
+                                                <span className="text-[#e94560] text-sm font-medium">${value.price}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            })}
+                        </div>
+
+
+                    </div>
+                </section>
 
 
             </div >
