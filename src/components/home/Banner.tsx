@@ -74,7 +74,7 @@ const Banner = () => {
        
     };
     return (
-        <section className='container flex'>
+        <section className='container-z flex'>
             <div className=' w-[20%] h-[510px] py-4 rounded-md shadow mt-2 hidden md:block'>
                 {
                     data.map(({ cateImg, cateName, path }) => (

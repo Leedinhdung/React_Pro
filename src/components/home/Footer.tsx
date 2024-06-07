@@ -1,103 +1,59 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { FaFacebookF } from "react-icons/fa6";
-import { FaInstagram, FaLinkedinIn, FaTwitter } from "react-icons/fa";
+
 
 const Footer = () => {
-    const currentYear = new Date().getFullYear();
+
     return (
-        <footer>
-            {/* footer top */}
-            <div className=" max-w-screen-2xl container mx-auto xl:px-28 px-4">
-                <div className="mt-20 mb-10 flex flex-col md:flex-row items-start justify-between gap-8">
-                    {/* company info */}
-                    <div className="md:w-[400px]">
-                        <Link to="/">
-                            <img src="/public/images/logo.webp" className="w-20" alt="" />
-                        </Link>
-                        <p className="my-8 text-Black/75">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                            eiusmod tempor incididunt ut labore et dolore magna aliqua
-                        </p>
-                        <div className="flex items-center gap-6">
-                            <FaFacebookF className="w-5 h-5 cursor-pointer hover:text-orange-500" />
-                            <FaTwitter className="w-5 h-5 cursor-pointer hover:text-orange-500" />
-                            <FaLinkedinIn className="w-5 h-5 cursor-pointer hover:text-orange-500" />
-                            <FaInstagram className="w-5 h-5 cursor-pointer hover:text-orange-500" />
+        <footer className="bg-[#0f3460] py-24 text-white">
+            <div className="container-z grid grid-cols-4 gap-5">
+                <div className="box">
+                    <h1 className="mb-7 text-3xl text-[#e94560] font-extrabold ">Fashion</h1>
+                    <p className="mb-5 text-sm font-light opacity-50">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Auctor
+                        libero id et, in gravida. Sit diam duis mauris nulla cursus. Erat
+                        et lectus vel ut sollicitudin elit at amet.
+                    </p>
+                    <div className="flex gap-5">
+                        <div className="bg-[#0c2a4d] py-4 p-5 rounded-md flex gap-2 items-center">
+                            <i className="fa-brands fa-google-play"></i>
+                            <span>Google Play</span>
                         </div>
-                    </div>
-
-                    {/* Catalog */}
-                    <div className="text-Black">
-                        <h4 className="font-semibold mb-3">CATALOG</h4>
-                        <div className="space-y-2">
-                            <Link to="/" className="text-sm block hover:text-orange-500">
-                                Necklaces
-                            </Link>
-                            <Link to="/" className="text-sm block hover:text-orange-500">
-                                Hoodies
-                            </Link>
-                            <Link to="/" className="text-sm block hover:text-orange-500">
-                                Jewelry Box
-                            </Link>
-                            <Link to="/" className="text-sm block hover:text-orange-500">
-                                T-shirt
-                            </Link>
-                            <Link to="/" className="text-sm block hover:text-orange-500">
-                                Jacket
-                            </Link>
-                        </div>
-                    </div>
-
-                    {/* CUSTOMER SERVICES */}
-                    <div className="text-Black">
-                        <h4 className="font-semibold mb-3">CUSTOMER SERVICES</h4>
-                        <div className="space-y-2">
-                            <Link to="/" className="text-sm block hover:text-orange-500">
-                                Contact Us
-                            </Link>
-                            <Link to="/" className="text-sm block hover:text-orange-500">
-                                Track Your Order
-                            </Link>
-                            <Link to="/" className="text-sm block hover:text-orange-500">
-                                Product Care & Repair
-                            </Link>
-                            <Link to="/" className="text-sm block hover:text-orange-500">
-                                Book an Appointment
-                            </Link>
-                            <Link to="/" className="text-sm block hover:text-orange-500">
-                                Shipping & Returns
-                            </Link>
-                        </div>
-                    </div>
-
-                    {/* ABOUT US */}
-                    <div className="text-Black">
-                        <h4 className="font-semibold mb-3">ABOUT US</h4>
-                        <div className="space-y-2">
-                            <Link to="/" className="text-sm block hover:text-orange-500">
-                                Our Producers
-                            </Link>
-                            <Link to="/" className="text-sm block hover:text-orange-500">
-                                Sitemap
-                            </Link>
-                            <Link to="/" className="text-sm block hover:text-orange-500">
-                                FAQ
-                            </Link>
-                            <Link to="/" className="text-sm block hover:text-orange-500">
-                                About Us
-                            </Link>
-                            <Link to="/" className="text-sm block hover:text-orange-500">
-                                Terms & Conditions
-                            </Link>
+                        <div className="bg-[#0c2a4d] py-4 p-5 rounded-md flex gap-2 items-center">
+                            <i className="fa-brands fa-app-store-ios"></i>
+                            <span>App Store</span>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            {/* footer bottom */}
-            <div className="bg-Black">
-                <p className="text-white text-center items-center py-3">© {currentYear} Coral, Inc.</p>
+                <div className="box">
+                    <h2 className="mb-5 font-bold text-2xl">About Us</h2>
+                    <ul className="opacity-50" >
+                        <li className="mb-2.5">Careers</li>
+                        <li className="mb-2.5">Our Stores</li>
+                        <li className="mb-2.5">Our Cares</li>
+                        <li className="mb-2.5">Terms & Conditions</li>
+                        <li className="mb-2.5">Privacy Policy</li>
+                    </ul>
+                </div>
+                <div className="box">
+                    <h2 className="mb-5 font-bold text-2xl">Customer Care</h2>
+                    <ul className="opacity-50">
+                        <li className="mb-2.5">Help Center </li>
+                        <li className="mb-2.5">How to Buy </li>
+                        <li className="mb-2.5">Track Your Order </li>
+                        <li className="mb-2.5">Corporate & Bulk Purchasing </li>
+                        <li className="mb-2.5">Returns & Refunds </li>
+                    </ul>
+                </div>
+                <div className="box">
+                    <h2 className="mb-5 font-bold text-2xl">Contact Us</h2>
+                    <ul className="opacity-50">
+                        <li className="mb-2.5">
+                            70 Washington Square South, New York, NY 10012, United States{" "}
+                        </li>
+                        <li className="mb-2.5">Email: uilib.help@gmail.com</li>
+                        <li className="mb-2.5">Phone: +1 1123 456 780</li>
+                    </ul>
+                </div>
             </div>
         </footer>
     );

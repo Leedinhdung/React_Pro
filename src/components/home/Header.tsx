@@ -48,7 +48,7 @@ const Header = () => {
     return (
         <main className='shadow '>
             <section className='bg-[#0f3460] py-[10px] text-white '>
-                <div className="container flex justify-between items-center ">
+                <div className="container-z flex justify-between items-center ">
 
                     <div className='flex items-center'>
                         <HiPhone className='me-[10px]' />
@@ -58,14 +58,14 @@ const Header = () => {
                     </div>
                     <div>
                         <label className='me-[30px] text-[13px]' htmlFor="">Theme FAQ's</label>
-                        <label className='me-[30px] text-[13px]' htmlFor="">Need Helps</label>
+                        <label className='text-[13px]' htmlFor="">Need Helps</label>
 
                     </div>
 
                 </div>
             </section>
             <section className='header py-[10px]'>
-                <div className='container flex justify-between items-center '>
+                <div className='container-z flex justify-between items-center '>
                     <div>
                         <img src={logo} className="w-24" alt="" />
                     </div>
@@ -98,7 +98,7 @@ const Header = () => {
             </section>
             <section className='md:pt-3 py-2'>
                 <header className=''>
-                    <div className='container flex justify-between'>
+                    <div className='container-z flex justify-between'>
                         <div className='flex items-center gap-4 shadow px-5 rounded-lg'>
                             <FaBorderAll fontSize={30} />
                             <h4 className='flex items-center text-xl font-medium'>Categories <HiChevronDown /></h4>
