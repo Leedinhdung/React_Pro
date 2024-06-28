@@ -1,5 +1,4 @@
 
-
 const Shop = () => {
   const data = [
     {

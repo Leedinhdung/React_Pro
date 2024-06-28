@@ -1,12 +1,40 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { HiChevronDown, HiPhone } from 'react-icons/hi'
 import { HiEnvelope } from 'react-icons/hi2'
 import { FaBars, FaBorderAll, FaSearch, FaShoppingBag, FaTimes, FaUser } from "react-icons/fa";
 
 import { Link, NavLink } from 'react-router-dom';
 import logo from "../../../public/images/logo.png"
+import { AuthContext } from '../../contexts/AuthProvider';
+import IProduct from '../../interfaces/IProduct';
 
 const Header = () => {
+    const [productSearch, setProductSearch] = useState<IProduct[]>([])
+    const [search, setSearch] = useState('')
+    // console.log(search);
+    useEffect(() => {
+        (async () => {
+            const response = await fetch('http://localhost:3000/products');
+            const data = await response.json()
+            setProductSearch(data)
+            // console.log(data);
+        })()
+    }, [])
+useEffect(() => {
+    const filteredProducts = productSearch.filter(product => product.name.toLowerCase().includes(search.toLowerCase()))
+    console.log(filteredProducts);
+
+        setProductSearch(filteredProducts)
+    }, [search])
+    
+    const { user, dispatchUser } = useContext(AuthContext);
+    // console.log(user);
+
+    const Logout = () => {
+        dispatchUser({
+            type: 'logout'
+        })
+    }
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -72,12 +100,43 @@ const Header = () => {
                     <div className='w-[50%] relative hidden md:block'>
                         <FaSearch
                             className='absolute  top-3 right-3 ms-1 ' />
-                        <input type="text" className='w-full pe-10 ps-5 rounded-full' placeholder='Search' />
+                        <input onChange={(e) => setSearch(e.target.value)} type="text" className='w-full pe-10 ps-5 rounded-full' placeholder='Search' />
                     </div>
 
                     <div className='flex items-center justify-between gap-5 '>
 
-                        <Link to="/login" className='bg-slate-200 p-4 rounded-full '><FaUser fontSize={24} /></Link>
+
+                        <div>
+                            {
+
+                                user ?
+                                    <div className='flex items-center gap-2'>
+                                        <div className="py-1">
+                                            <button onClick={() => Logout()} className='rounded px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 '>Log out</button>
+                                        </div>
+                                        <div className="py-1">
+                                            <Link to={'/admin/dashboard'} className='rounded px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 '>DashBoard</Link>
+                                        </div>
+
+                                    </div>
+                                    : <div>
+                                        <Link to={'/register'} className=" bg-slate-200 hover:bg-blue-800 hover:text-white  font-medium rounded-lg text-sm px-4 py-2 text-center">Register</Link>
+                                        <Link to={'/login'} className="text-white bg-green-700 hover:bg-green-700   font-medium rounded-lg text-sm px-4 py-2 text-center  ms-3">Login</Link>
+                                    </div>
+                            }
+                        </div>
+
+                        {
+                            // user ? <div className='flex items-center gap-5'>
+                            //     <h3 className="text-white">{user.user.email}</h3>
+                            //     <button onClick={() => Logout()} className="bg-blue-600 px-3 py-2 rounded-xl text-white">Logout</button>
+                            // </div>
+                            //     : <div>
+                            //         <Link to={'/register'} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Register</Link>
+                            //         <Link to={'/login'} className="text-white bg-green-700 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-green-700 dark:hover:bg-green-600 dark:focus:ring-blue-800 ms-3">Login</Link>
+                            //     </div>
+                        }
+
                         <div className='relative bg-slate-200 p-4 rounded-full'>
                             <Link to="/cart" className=' '><FaShoppingBag fontSize={24} /></Link>
                             <span className='absolute top-2 right-1 w-5 h-5 rounded-[50%] text-center bg-[#e94560] text-white text-xs leading-5'>0</span>

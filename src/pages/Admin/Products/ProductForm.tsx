@@ -1,10 +1,16 @@
-import { useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
+import { ProductContext } from "../../../contexts/ProductProvider";
+import instance from "../../../axios/instance";
+import IProduct from "../../../interfaces/IProduct";
+
+
+const { VITE_CLOUD_NAME, VITE_UPLOAD_PRESET } = import.meta.env;
 const productSchema = z.object({
   name: z.string().min(5, { message: 'Tên sản phẩm phải từ 5 kí tự trở lên !' }).max(100, { message: 'Tên sản phẩm không được quá 100 kí tự !' }),
   category: z.string(),
@@ -12,35 +18,76 @@ const productSchema = z.object({
   size: z.string().min(1, { message: 'Vui lòng nhập thông tin' }),
   price: z.number().min(1, { message: "Vui lòng nhập giá lớn hơn 0" }),
   description: z.string().optional(),
+  thumbnail: z.any().optional(),
 })
+console.log(VITE_CLOUD_NAME);
 
-const ProductForm = ({ addPro, editPro }: any) => {
+const ProductForm = () => {
   const navigate = useNavigate();
   const { id } = useParams();
+  const { dispathProducts } = useContext(ProductContext);
+  const [thumbnailUrl, setThumbnailUrl] = useState(null);
 
-
+  //Lưu trữ lựa chọn của người dùng
+  const [thumbnailOption, setThumbnailOption] = useState("keep")
   const {
     register,
     reset,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<IProduct>({
     resolver: zodResolver(productSchema),
   });
-  if (id) {
-    useEffect(() => {
-      fetch('http://localhost:3000/products/' + id).then(res => res.json()).then(data => {
-        reset(data)
-      })
-    }, [id])
-  }
-  const onSubmit = (data: any) => {
-    if (id)
-      editPro(data, id)
 
-    else
-      addPro(data)
-    navigate('/admin/product')
+  useEffect(() => {
+    if (id) {
+      (async () => {
+        const { data } = await instance.get(`/products/${id}`);
+        reset(data);
+        setThumbnailUrl(data.thumbnail);
+      })();
+    }
+
+  }, [id, reset]);
+  const uploadImage = async (file: any) => {
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", VITE_UPLOAD_PRESET);
+    const response = await fetch(`https://api.cloudinary.com/v1_1/${VITE_CLOUD_NAME}/image/upload`, {
+      method: "POST",
+      body: formData
+    });
+    const data = await response.json();
+    return data.secure_url;
+  }
+
+  const onSubmit = async (product: any) => {
+    try {
+      let updatedProduct = { ...product };
+      switch (thumbnailOption) {
+        case "upload":
+          if (product.thumbnail && product.thumbnail[0]) {
+            const thumbnailUrl = await uploadImage(product.thumbnail[0]);
+            updatedProduct = { ...updatedProduct, thumbnail: thumbnailUrl };
+          }
+          break;
+        default:
+      }
+      if (id) {
+        const { data } = await instance.patch(`/products/${id}`, updatedProduct)
+        dispathProducts({ type: 'update_product', payload: { id, product: updatedProduct } })
+
+      }
+      else {
+        const { data } = await instance.post('/products', updatedProduct)
+        dispathProducts({ type: 'add_product', payload: data })
+      }
+      navigate('/admin/product')
+    }
+    catch (error) {
+      console.log(error);
+    }
+    // onProduct({ ...data, id });
   }
   return (
     <div>
@@ -115,10 +162,9 @@ const ProductForm = ({ addPro, editPro }: any) => {
                   className="bg-gray-50 border border-gray-300  text-sm rounded-sm focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
                 >
 
-                  <option value="TV">TV/Monitors</option>
-                  <option value="PC">PC</option>
-                  <option value="GA">Gaming/Console</option>
-                  <option value="PH">Phones</option>
+                  <option value="Áo">Áo</option>
+                  <option value="Quần">Quần</option>
+                  <option value="Đồng hồ">Đồng hồ</option>
                 </select>
                 <small className="text-red-600 text-sm mt-2">{errors.category?.message?.toString()}</small>
               </div>
@@ -175,6 +221,37 @@ const ProductForm = ({ addPro, editPro }: any) => {
 
                 />
                 <small className="text-red-600 text-sm mt-2">{errors.price?.message}</small>
+              </div>
+              <div className="mb-3">
+                <label htmlFor="thumbnailOption" className="block mb-2 text-sm font-medium">
+                  Choose Thumbnail Option
+                </label>
+                <select
+                  className="bg-gray-50 border border-gray-300  text-sm rounded-sm focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                  id="thumbnailOption"
+                  value={thumbnailOption}
+                  onChange={(e) => setThumbnailOption(e.target.value)}
+                >
+                  <option value="keep">Keep Current Thumbnail</option>
+                  <option value="link">Add Thumbnail from Link</option>
+                  <option value="upload">Upload Thumbnail from Local</option>
+                </select>
+              </div>
+
+              <div className="mb-3">
+                <label htmlFor="thumbnail" className="block mb-2 text-sm font-medium">
+                  Thumbnail
+                </label>
+                {thumbnailOption === "link" && (
+                  <input type="text" className="bg-gray-50 border border-gray-300  text-sm rounded-sm focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" id="thumbnail" {...register("thumbnail")} />
+                )}
+                {thumbnailOption === "upload" && (
+                  <input type="file" className="bg-gray-50 border border-gray-300  text-sm rounded-sm focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" id="thumbnail" {...register("thumbnail", { required: true })} />
+                )}
+
+                {thumbnailUrl && (
+                  <img src={thumbnailUrl} alt="Product Thumbnail" style={{ maxWidth: "200px", marginTop: "10px" }} />
+                )}
               </div>
               {/* <div className="w-52 col-span-2 border-2 border-gray-300 rounded-md">
                   <img

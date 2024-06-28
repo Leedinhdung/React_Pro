@@ -1,14 +1,39 @@
 import { Link } from "react-router-dom";
 import IProductForm from "../../../interfaces/IProduct";
-import { useState } from "react";
-interface IProps {
-  data: IProductForm[],
-  onDel: any
-}
+import { useContext, useEffect } from "react";
+import { ProductContext } from "../../../contexts/ProductProvider";
 
-const ListProduct = (props: IProps) => {
-  const [search, setSearch] = useState("")
+const ListProduct = () => {
 
+  const { products, dispathProducts } = useContext(ProductContext);
+
+  useEffect(() => {
+    fetch('http://localhost:3000/products')
+      .then(response => response.json())
+      .then(data => {
+        dispathProducts({
+          type: "set_product",
+          payload: data
+        })
+
+      })
+      .catch(error => {
+        console.log(error);
+      })
+  }, [])
+  function deletePro(id: string) {
+    fetch('http://localhost:3000/products/' + id, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(() => {
+      dispathProducts({
+        type: "delete_product",
+        payload: id
+      })
+    })
+  }
   return (
     <div className="relative bg-white overflow-x-auto shadow-md sm:rounded-lg  p-4">
       <div className="pb-4 ">
@@ -21,7 +46,7 @@ const ListProduct = (props: IProps) => {
               <i className="fa-solid fa-magnifying-glass"></i>
             </div>
             <input
-              onChange={(e) => setSearch(e.target.value)}
+
               type="text"
               id="table-search"
               className="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 "
@@ -53,6 +78,7 @@ const ListProduct = (props: IProps) => {
                 </label>
               </div>
             </th>
+            <th scope="col" className="px-6 py-3">Ảnh</th>
             <th scope="col" className="px-6 py-3">
               Name
             </th>
@@ -77,11 +103,9 @@ const ListProduct = (props: IProps) => {
           </tr>
         </thead>
         <tbody>
-          {props.data.filter((item) => {
-            return search.toLowerCase() === '' ? item : item.name.toLowerCase().includes(search)
-          }).map((items) => {
-            return (
-              <tr key={items.id} className="bg-white border-b  hover:bg-gray-50 ">
+          {
+            products?.map((product: IProductForm, index: number) => (
+              <tr key={index} className="bg-white border-b  hover:bg-gray-50 ">
                 <td className="w-4 p-4">
                   <div className="flex items-center">
                     <input
@@ -94,33 +118,38 @@ const ListProduct = (props: IProps) => {
                     </label>
                   </div>
                 </td>
+                <td className="px-6 py-4 "><img src={product.thumbnail} className="rounded-full" width={50} alt="" /></td>
+
                 <th
                   scope="row"
                   className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
                 >
-                  {items.name}
+                  {product.name}
                 </th>
-                <td className="px-6 py-4">{items.category}</td>
-                <td className="px-6 py-4">{items.brand}</td>
+                <td className="px-6 py-4">{product.category}</td>
+                <td className="px-6 py-4">{product.brand}</td>
 
-                <td className="px-6 py-4">{items.size}</td>
-                <td className="px-6 py-4">${items.price}</td>
-                <td className="px-6 py-4">{items.description}</td>
+                <td className="px-6 py-4">{product.size}</td>
+                <td className="px-6 py-4">${product.price}</td>
+                <td className="px-6 py-4">{product.description}</td>
                 <td className="px-6 py-4 text-center">
-                  <Link to={`/admin/product/edit/${items.id}`} className="font-medium text-blue-600 hover:underline ">
+                  <Link to={`/admin/product/edit/${product.id}`} className="font-medium text-blue-600 hover:underline ">
                     <i className="fa-solid fa-pencil text-xl"></i>
                   </Link>
                   <span className="mx-3 text-black font-medium text-xl">||</span>
                   <button onClick={() => {
-                    if (confirm('Are you sure?'))
-                      props.onDel(items.id)
+                    if (confirm("Are you sure you want to")) {
+                      deletePro(product.id! as string);
+                    }
                   }} className="font-medium text-blue-600 hover:underline">
                     <i className="fa-solid fa-trash text-xl"></i>
                   </button>
                 </td>
               </tr>
-            )
-          })}
+            ))
+          }
+
+
 
         </tbody>
       </table>

@@ -1,31 +1,54 @@
 {
   "products": [
     {
-      "name": "Áo sơ mi",
-      "category": "GA",
+      "name": "Lê Đình Dũng",
+      "category": "Áo",
       "brand": "Dior",
       "size": "XL",
-      "price": 1000,
+      "price": 10000,
       "description": "",
+      "thumbnail": "https://picsum.photos/200",
       "id": 3
     },
     {
-      "name": "iPhone 14",
-      "category": "PH",
+      "name": "Lê Đình Dũng",
+      "category": "Áo",
       "brand": "Dior",
       "size": "XL",
       "price": 10000,
       "description": "",
+      "thumbnail": "https://picsum.photos/200",
       "id": 4
     },
     {
-      "name": "product 45",
-      "category": "TV",
-      "brand": "Áo Polo",
+      "name": "Lê Đình Dũng",
+      "category": "Quần",
+      "brand": "Rolex",
+      "size": "X",
+      "price": 290000,
+      "description": "",
+      "thumbnail": "https://picsum.photos/200",
+      "id": 5
+    },
+    {
+      "name": "Áo Polo Vải Polyester Bền Màu",
+      "category": "Áo",
+      "brand": "Dior",
       "size": "XL",
+      "price": 290000,
+      "description": "",
+      "thumbnail": "https://picsum.photos/200",
+      "id": 6
+    },
+    {
+      "name": "Quần Jeans Nữ Jogger Ly Túi",
+      "category": "Quần",
+      "brand": "Dior",
+      "size": "X",
       "price": 10000,
       "description": "",
-      "id": 5
+      "thumbnail": "https://res.cloudinary.com/dbg742muf/image/upload/v1719562365/zadvj5qdeh3msrqzamor.webp",
+      "id": 7
     }
   ],
   "users": [

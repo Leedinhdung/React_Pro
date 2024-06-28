@@ -10,8 +10,21 @@ import Banner from '../../components/home/Banner';
 import { FaHeart } from "react-icons/fa";
 import Discount from "./Discount/Discount";
 import Shop from "./shops/Shop";
+import { useEffect, useState } from "react";
+import IProduct from "../../interfaces/IProduct";
 
 const Home = () => {
+
+    const [flash, setFlash] = useState<IProduct[]>([]);
+    useEffect(() => {
+        (async () => {
+            const res = await fetch('http://localhost:3000/products');
+            const data = await res.json();
+            setFlash(data);
+            console.log(data);
+        })()
+    }, []
+    )
 
     const SampleNextArrow = (props: any) => {
         const { onClick } = props
@@ -73,51 +86,51 @@ const Home = () => {
         ]
 
     }
-    const productItems = [
-        {
-            id: 1,
-            discount: 50,
-            cover: "../../../public/images/flash/flash-1.png",
-            name: "Shoes",
-            price: 100,
-        },
-        {
-            id: 2,
-            discount: 40,
-            cover: "../../../public/images/flash/flash-2.png",
-            name: "Watch",
-            price: 20,
-        },
-        {
-            id: 3,
-            discount: 40,
-            cover: "../../../public/images/flash/flash-3.png",
-            name: "Smart Mobile Black",
-            price: 200,
-        },
-        {
-            id: 4,
-            discount: 40,
-            cover: "../../../public/images/flash/flash-4.png",
-            name: "Smart Watch Black",
-            price: 50,
-        },
-        {
-            id: 5,
-            discount: 50,
-            cover: "../../../public/images/flash/flash-1.png",
-            name: "Shoes",
-            price: 100,
-        },
-        {
-            id: 6,
-            discount: 50,
-            cover: "../../../public/images/flash/flash-3.png",
-            name: "Shoes",
-            price: 100,
-        },
+    // const productItems = [
+    //     {
+    //         id: 1,
+    //         discount: 50,
+    //         cover: "../../../public/images/flash/flash-1.png",
+    //         name: "Shoes",
+    //         price: 100,
+    //     },
+    //     {
+    //         id: 2,
+    //         discount: 40,
+    //         cover: "../../../public/images/flash/flash-2.png",
+    //         name: "Watch",
+    //         price: 20,
+    //     },
+    //     {
+    //         id: 3,
+    //         discount: 40,
+    //         cover: "../../../public/images/flash/flash-3.png",
+    //         name: "Smart Mobile Black",
+    //         price: 200,
+    //     },
+    //     {
+    //         id: 4,
+    //         discount: 40,
+    //         cover: "../../../public/images/flash/flash-4.png",
+    //         name: "Smart Watch Black",
+    //         price: 50,
+    //     },
+    //     {
+    //         id: 5,
+    //         discount: 50,
+    //         cover: "../../../public/images/flash/flash-1.png",
+    //         name: "Shoes",
+    //         price: 100,
+    //     },
+    //     {
+    //         id: 6,
+    //         discount: 50,
+    //         cover: "../../../public/images/flash/flash-3.png",
+    //         name: "Shoes",
+    //         price: 100,
+    //     },
 
-    ];
+    // ];
     const Ndata = [
         {
             cover: "./images/arrivals/arrivals1.png",
@@ -186,13 +199,13 @@ const Home = () => {
                         <h1 className=' font-[600] text-2xl'>Flash Deals</h1>
                     </div>
                     <Slider {...settings} className=" mt-10">
-                        {productItems.map((value, id) => {
+                        {flash.map((value, id) => {
                             return (
                                 <div key={id} className="ms-5 shadow">
                                     <div className="bg-white w-[90%]  p-10 relative rounded-lg">
                                         <div className="">
-                                            <span className="absolute top-0 left-0 bg-[#e94560] px-3 py-1 text-sm rounded-full text-white m-2.5">{value.discount}% Off</span>
-                                            <img className=" mx-auto" src={value.cover} alt="" />
+                                            <span className="absolute top-0 left-0 bg-[#e94560] px-3 py-1 text-sm rounded-full text-white m-2.5">5% Off</span>
+                                            <img className=" mx-auto max-h-52 rounded-sm" src={value.thumbnail} alt="" />
                                             <div className="absolute top-0 right-0 m-2.5  transition ">
 
                                                 <FaHeart className="text-xl my-2.5 mx-2" />

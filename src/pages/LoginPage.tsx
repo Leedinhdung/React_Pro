@@ -1,10 +1,15 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
+
 import * as z from 'zod';
+import { AuthContext } from "../contexts/AuthProvider";
+import IUser from "../interfaces/IUser";
 
 
 const LoginPage = () => {
+  const { dispatchUser } = useContext(AuthContext)
   const navigate = useNavigate()
   const passwordValidation = new RegExp(
     /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
@@ -23,11 +28,11 @@ const LoginPage = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<IUser>({
     resolver: zodResolver(authSchema),
 
   });
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: IUser) => {
 
     (async () => {
       try {
@@ -37,10 +42,13 @@ const LoginPage = () => {
           body: JSON.stringify(data)
         })
         if (res.status == 200) {
-          alert("Bạn đã đăng nhập thành công !")
-          navigate('/')
-        } else {
-          alert('Tài khoản không tồn tại !')
+          const datas = await res.json()
+          // console.log(datas);
+            localStorage.setItem("user", JSON.stringify(datas));
+            alert("Bạn đã đăng nhập thành công !")
+            navigate('/')
+            dispatchUser({ type: "login" });
+         
         }
       } catch (error) {
         console.log(errors);
@@ -74,6 +82,7 @@ const LoginPage = () => {
             className="bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-md block w-full p-2 px-2 outline-none"
             {...register("email", { required: true })}
           />
+          <span>{errors?.email?.message}</span>
         </div>
         <div>
           <label
@@ -88,6 +97,7 @@ const LoginPage = () => {
             className="bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-md block w-full p-2 px-2 outline-none"
             {...register("password", { required: true })}
           />
+          <span>{errors?.password?.message}</span>
         </div>
         <div className="flex justify-between mt-3">
           <div className="flex items-center gap-2">
