@@ -1,33 +1,33 @@
 {
   "products": [
     {
-      "name": "Lê Đình Dũng",
+      "name": "Áo phông unisex",
       "category": "Áo",
       "brand": "Dior",
       "size": "XL",
-      "price": 10000,
+      "price": 200,
       "description": "",
-      "thumbnail": "https://picsum.photos/200",
+      "thumbnail": "https://res.cloudinary.com/dbg742muf/image/upload/v1719569265/hfcntusiz6st7os6uewy.webp",
       "id": 3
     },
     {
-      "name": "Lê Đình Dũng",
+      "name": "Áo phông người lớn cotton",
       "category": "Áo",
       "brand": "Dior",
       "size": "XL",
-      "price": 10000,
+      "price": 100,
       "description": "",
-      "thumbnail": "https://picsum.photos/200",
+      "thumbnail": "https://res.cloudinary.com/dbg742muf/image/upload/v1719569325/etuhsydreyptdgq5vsit.webp",
       "id": 4
     },
     {
-      "name": "Lê Đình Dũng",
-      "category": "Quần",
+      "name": "Áo phông nam in họa tiết dáng rộng",
+      "category": "Áo",
       "brand": "Rolex",
       "size": "X",
-      "price": 290000,
+      "price": 290,
       "description": "",
-      "thumbnail": "https://picsum.photos/200",
+      "thumbnail": "https://res.cloudinary.com/dbg742muf/image/upload/v1719569428/bxaxpcarxbyfziahlf5d.webp",
       "id": 5
     },
     {
@@ -35,9 +35,9 @@
       "category": "Áo",
       "brand": "Dior",
       "size": "XL",
-      "price": 290000,
+      "price": 290,
       "description": "",
-      "thumbnail": "https://picsum.photos/200",
+      "thumbnail": "https://res.cloudinary.com/dbg742muf/image/upload/v1719569449/tmxtnirblspkvic2kna7.webp",
       "id": 6
     },
     {
@@ -45,10 +45,20 @@
       "category": "Quần",
       "brand": "Dior",
       "size": "X",
-      "price": 10000,
+      "price": 99,
       "description": "",
       "thumbnail": "https://res.cloudinary.com/dbg742muf/image/upload/v1719562365/zadvj5qdeh3msrqzamor.webp",
       "id": 7
+    },
+    {
+      "name": "Quần jeans nam dáng ôm",
+      "category": "Quần",
+      "brand": "Dior",
+      "size": "M",
+      "price": 290,
+      "description": "",
+      "thumbnail": "https://res.cloudinary.com/dbg742muf/image/upload/v1719569704/ftarwv1jcpglhkmgqch8.webp",
+      "id": 8
     }
   ],
   "users": [

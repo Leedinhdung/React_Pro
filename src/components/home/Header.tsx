@@ -9,7 +9,11 @@ import { AuthContext } from '../../contexts/AuthProvider';
 import IProduct from '../../interfaces/IProduct';
 
 const Header = () => {
+
     const [productSearch, setProductSearch] = useState<IProduct[]>([])
+
+    const [productSearchs, setProductSearchs] = useState<IProduct[]>([])
+
     const [search, setSearch] = useState('')
     // console.log(search);
     useEffect(() => {
@@ -17,16 +21,18 @@ const Header = () => {
             const response = await fetch('http://localhost:3000/products');
             const data = await response.json()
             setProductSearch(data)
+            setProductSearchs(data)
             // console.log(data);
         })()
     }, [])
-useEffect(() => {
-    const filteredProducts = productSearch.filter(product => product.name.toLowerCase().includes(search.toLowerCase()))
-    console.log(filteredProducts);
+    useEffect(() => {
 
-        setProductSearch(filteredProducts)
-    }, [search])
-    
+        const filteredProducts = productSearch.filter(product => product.name.toLowerCase().includes(search.toLowerCase()))
+        // console.log(filteredProducts);
+
+        setProductSearchs(filteredProducts)
+    }, [search, productSearch])
+
     const { user, dispatchUser } = useContext(AuthContext);
     // console.log(user);
 
@@ -101,6 +107,29 @@ useEffect(() => {
                         <FaSearch
                             className='absolute  top-3 right-3 ms-1 ' />
                         <input onChange={(e) => setSearch(e.target.value)} type="text" className='w-full pe-10 ps-5 rounded-full' placeholder='Search' />
+                        {
+                            search &&
+                            <div className='absolute top-[50px] left-0 w-full p-3 shadow-xl z-[999] bg-white rounded'>
+                                {
+
+                                    productSearchs.map((value, index) => (
+                                        <Link to={`/product/${value.id}`} key={index} className="hover:text-blue-700 text-sm my-2 block border-b-2 p-2">
+                                            <div className='flex items-center gap-2 '>
+                                                <div>
+                                                    <img src={value.thumbnail} className='max-h-8 min-h-8' alt="" />
+                                                </div>
+                                                <div>
+                                                    <div>{value.name}</div>
+                                                    <div>{value.price}</div>
+                                                </div>
+
+                                            </div>
+                                        </Link>
+                                    ))
+                                }
+                            </div>
+                        }
+
                     </div>
 
                     <div className='flex items-center justify-between gap-5 '>

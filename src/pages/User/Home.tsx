@@ -12,6 +12,7 @@ import Discount from "./Discount/Discount";
 import Shop from "./shops/Shop";
 import { useEffect, useState } from "react";
 import IProduct from "../../interfaces/IProduct";
+import { Link } from "react-router-dom";
 
 const Home = () => {
 
@@ -21,7 +22,7 @@ const Home = () => {
             const res = await fetch('http://localhost:3000/products');
             const data = await res.json();
             setFlash(data);
-            console.log(data);
+            // console.log(data);
         })()
     }, []
     )
@@ -131,38 +132,38 @@ const Home = () => {
     //     },
 
     // ];
-    const Ndata = [
-        {
-            cover: "./images/arrivals/arrivals1.png",
-            name: "Sunglass",
-            price: "150",
-        },
-        {
-            cover: "./images/arrivals/arrivals2.png",
-            name: "Makeup",
-            price: "250",
-        },
-        {
-            cover: "./images/arrivals/arrivals3.png",
-            name: "Smart Watch",
-            price: "50",
-        },
-        {
-            cover: "./images/arrivals/arrivals4.png",
-            name: "Lipstick",
-            price: "15",
-        },
-        {
-            cover: "./images/arrivals/arrivals5.png",
-            name: "Green Plant",
-            price: "10",
-        },
-        {
-            cover: "./images/arrivals/arrivals6.png",
-            name: "Bonsai tree",
-            price: "400",
-        },
-    ]
+    // const Ndata = [
+    //     {
+    //         cover: "./images/arrivals/arrivals1.png",
+    //         name: "Sunglass",
+    //         price: "150",
+    //     },
+    //     {
+    //         cover: "./images/arrivals/arrivals2.png",
+    //         name: "Makeup",
+    //         price: "250",
+    //     },
+    //     {
+    //         cover: "./images/arrivals/arrivals3.png",
+    //         name: "Smart Watch",
+    //         price: "50",
+    //     },
+    //     {
+    //         cover: "./images/arrivals/arrivals4.png",
+    //         name: "Lipstick",
+    //         price: "15",
+    //     },
+    //     {
+    //         cover: "./images/arrivals/arrivals5.png",
+    //         name: "Green Plant",
+    //         price: "10",
+    //     },
+    //     {
+    //         cover: "./images/arrivals/arrivals6.png",
+    //         name: "Bonsai tree",
+    //         price: "400",
+    //     },
+    // ]
     const data = [
         {
             cover: <i className='fa-solid fa-truck-fast'></i>,
@@ -199,9 +200,9 @@ const Home = () => {
                         <h1 className=' font-[600] text-2xl'>Flash Deals</h1>
                     </div>
                     <Slider {...settings} className=" mt-10">
-                        {flash.map((value, id) => {
+                        {flash.map((value, index) => {
                             return (
-                                <div key={id} className="ms-5 shadow">
+                                <Link to={`product/${value.id}`} key={index} className="ms-5 shadow">
                                     <div className="bg-white w-[90%]  p-10 relative rounded-lg">
                                         <div className="">
                                             <span className="absolute top-0 left-0 bg-[#e94560] px-3 py-1 text-sm rounded-full text-white m-2.5">5% Off</span>
@@ -212,7 +213,7 @@ const Home = () => {
                                             </div>
                                         </div>
                                         <div>
-                                            <h3>{value.name}</h3>
+                                            <h3 className="truncate">{value.name}</h3>
                                             <div className="flex text-[#ffcd4e] text-sm gap-1.5 my-2">
                                                 <FaStar />
                                                 <FaStar />
@@ -226,7 +227,7 @@ const Home = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </Link>
                             )
                         })
                         }
@@ -245,7 +246,7 @@ const Home = () => {
                             </div>
                         </div>
 
-                        <div className=" grid grid-cols-6 gap-8 bg-white rounded-xl shadow p-5">
+                        {/* <div className=" grid grid-cols-6 gap-8 bg-white rounded-xl shadow p-5">
                             {Ndata.map((value, index) => {
                                 return (
                                     <div key={index} className=" rounded-lg p-5">
@@ -259,7 +260,7 @@ const Home = () => {
                                     </div>
                                 )
                             })}
-                        </div>
+                        </div> */}
 
 
                     </div>

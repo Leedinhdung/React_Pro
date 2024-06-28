@@ -164,29 +164,12 @@ const ProductForm = () => {
 
                   <option value="Áo">Áo</option>
                   <option value="Quần">Quần</option>
-                  <option value="Đồng hồ">Đồng hồ</option>
+                
                 </select>
                 <small className="text-red-600 text-sm mt-2">{errors.category?.message?.toString()}</small>
               </div>
 
-              <div className="w-full">
-                <label
-                  htmlFor="brand"
-                  className="block mb-2 text-sm font-medium  "
-                >
-                  Hãng
-                </label>
-                <input
-                  type="text"
-
-                  id="brand"
-                  {...register("brand", { required: true })}
-                  className="bg-gray-50 border border-gray-300  text-sm rounded-sm focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                  placeholder="Product brand"
-
-                />
-                <small className="text-red-600 text-sm mt-2">{errors.brand?.message?.toString()}</small>
-              </div>
+             
               <div className="w-full">
                 <label
                   htmlFor="size"
